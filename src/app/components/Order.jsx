@@ -1,10 +1,10 @@
 class Order {
-    constructor(uid,oid,tableNo) {
-        this.uid = uid;
-        this.oid = oid;
-        this.tableNo = tableNo;
-        this.productDict = {};
-    }
+  constructor(uid, oid, tableNo) {
+    this.uid = uid;
+    this.oid = oid;
+    this.tableNo = tableNo;
+    this.productDict = {};
+  }
 
   addProduct(productId, quantity) {
     if (this.productDict[productId]) {
@@ -30,7 +30,7 @@ class Order {
     // loop ดู quantity and productId
     for (const productId in this.productDict) {
       const quantity = this.productDict[productId];
-      const product = products.find(product => product.id === productId);
+      const product = products.find((product) => product.id === productId);
       if (product) {
         totalPrice += product.price * quantity;
       }
@@ -42,7 +42,7 @@ class Order {
     const orderDetail = [];
     for (const productId in this.productDict) {
       const quantity = this.productDict[productId];
-      const product = products.find(product => product.id === productId);
+      const product = products.find((product) => product.id === productId);
       if (product) {
         orderDetail.push({ product, quantity });
       }
