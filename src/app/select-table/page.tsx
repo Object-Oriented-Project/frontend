@@ -1,60 +1,65 @@
-'use client'
-import React, { useState } from 'react';
-import TableMap from '../components/TableMap';
-import { useRouter } from 'next/navigation';
+"use client";
+import React, { useState } from "react";
+import TableMap from "../components/TableMap";
+import { useRouter } from "next/navigation";
 
 export default function SelectTable() {
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [selectedTable, setSelectedTable] = useState(null);
-    const router = useRouter();
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedTable, setSelectedTable] = useState(null);
+  const router = useRouter();
 
-    const handleCheckboxChange = (option) => {
-        setSelectedOption(option);
-    };
+  const handleCheckboxChange = (option) => {
+    setSelectedOption(option);
+  };
 
-    const handleTableClick = (tableId) => {
-        setSelectedTable(tableId);
-    };
+  const handleTableClick = (tableId) => {
+    setSelectedTable(tableId);
+  };
 
-    const handleNextButtonClick = () => {
-        if (selectedOption && selectedTable) {
-            console.log('Selected option:', selectedOption);
-            console.log('Selected table:', selectedTable);
-                        router.push('/qr'); // Redirect to /qr page
+  const handleNextButtonClick = () => {
+    if (selectedOption && selectedTable) {
+      console.log("Selected option:", selectedOption);
+      console.log("Selected table:", selectedTable);
+      router.push("/qr"); // Redirect to /qr page
+    } else {
+      console.warn("Option and table must be selected");
+    }
+  };
 
-        } else {
-            console.warn('Option and table must be selected');
-        }
-    };
-
-    return (
-        <div className="flex flex-col bg-orange-200">
-            <div className='container max-w-xl bg-slate-100 rounded-xl '>Selected Table</div>
-            <div>
-                <div>Take Home</div>
-                <input
-                    type="checkbox"
-                    checked={selectedOption === 'takeHome'}
-                    onChange={() => handleCheckboxChange('takeHome')}
-                    className="checkbox"
-                />
-            </div>
-            <div>
-                <div>Sit In</div>
-                <input
-                    type="checkbox"
-                    checked={selectedOption === 'sitIn'}
-                    onChange={() => handleCheckboxChange('sitIn')}
-                    className="checkbox"
-                />
-            </div>
-            {selectedOption === 'sitIn' && <TableMap onTableClick={handleTableClick} />}
-            <div> 
-                <button className="btn btn-success" onClick={handleNextButtonClick}>Next</button>
-            </div>
-            <div> 
-                <button className='btn btn-error'> back </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex flex-col bg-orange-200">
+      <div className="container max-w-xl bg-slate-100 rounded-xl ">
+        Selected Table
+      </div>
+      <div>
+        <div>Take Home</div>
+        <input
+          type="checkbox"
+          checked={selectedOption === "takeHome"}
+          onChange={() => handleCheckboxChange("takeHome")}
+          className="checkbox"
+        />
+      </div>
+      <div>
+        <div>Sit In</div>
+        <input
+          type="checkbox"
+          checked={selectedOption === "sitIn"}
+          onChange={() => handleCheckboxChange("sitIn")}
+          className="checkbox"
+        />
+      </div>
+      {selectedOption === "sitIn" && (
+        <TableMap onTableClick={handleTableClick} />
+      )}
+      <div>
+        <button className="btn btn-success" onClick={handleNextButtonClick}>
+          Next
+        </button>
+      </div>
+      <div>
+        <button className="btn btn-error"> back </button>
+      </div>
+    </div>
+  );
 }
