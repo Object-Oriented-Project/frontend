@@ -1,15 +1,10 @@
 class Order {
-  uid: string;
-  oid: string;
-  tableNo: string;
-  productDict: { [key: string]: number };
-
-  constructor(uid,oid,tableNo) {
-      this.uid = uid;
-      this.oid = oid;
-      this.tableNo = tableNo;
-      this.productDict = {};
-  }
+    constructor(uid,oid,tableNo) {
+        this.uid = uid;
+        this.oid = oid;
+        this.tableNo = tableNo;
+        this.productDict = {};
+    }
 
   addProduct(productId, quantity) {
     if (this.productDict[productId]) {
@@ -25,6 +20,7 @@ class Order {
 
   updateProduct(productId, quantity) {
     if (this.productDict[productId]) {
+      // Update the quantity of the specified product
       this.productDict[productId] = quantity;
     }
   }
@@ -52,10 +48,5 @@ class Order {
       }
     }
     return orderDetail;
-  }
-
-  pay() {
-    // ทำการส่ง order ไปยัง kitchen
-    console.log('Order sent to kitchen');
   }
 }
