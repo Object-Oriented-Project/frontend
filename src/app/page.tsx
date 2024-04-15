@@ -1,7 +1,4 @@
-import Slideshow from "./slideshow/page";
-import Navbar from "./components/navbar";
-import Banner from "./components/banner";
-import Menu from "./components/menupage";
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -80,10 +77,19 @@ export default function Home() {
                   />
                 </svg>
               </button>
+
+
+              <Link href="/menu" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Next
+              </Link>
+
             </div>
           </div>
         </div>
       </div>
+
+
+
+
     </section>
   );
 }
