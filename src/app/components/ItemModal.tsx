@@ -32,7 +32,7 @@ const Modal = ({ item, closeModal }) => {
       <div className="modal-box bg-white border border-gray-100 transition transform duration-700 hover:shadow-xl hover:scale-105 p-10 rounded-lg relative">
         <img
           className="w-64 mx-auto transform transition duration-300 hover:scale-105"
-          src={item.PictureName}
+          src={`/menu/${item.PictureName}`}
           alt=""
         />
         <h1 className="text-gray-900 poppins text-lg">{item.ItemName}</h1>
@@ -79,7 +79,7 @@ const Modal = ({ item, closeModal }) => {
 
 
 
-        <h2 className="text-gray-900 poppins text-2xl font-bold justify-self-end">{item[`ItemPrice${selectedSize}`]}</h2>
+        <h2 className="text-gray-900 poppins text-2xl font-bold justify-self-end">{item[`ItemPrice${selectedSize}`]} THB</h2>
 
         {/* add and remove item number*/}
         <div className="flex justify-between items-center mt-2">
