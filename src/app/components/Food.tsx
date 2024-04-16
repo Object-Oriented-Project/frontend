@@ -1,7 +1,16 @@
 // Food class
-class Food extends Product {
-    constructor(name, price, spicy) {
-      super(name, price);
-      this.spicy = spicy;
-    }
+import {Product} from "./Product";
+
+export class Food extends Product {
+
+  #spicy : number;
+
+  constructor(pid: number, name: string, price: number, size: string, quantity:number, spicy: number) {
+    super(pid, name, price, size,quantity);
+    this.#spicy = spicy;
   }
+
+  getSpicy() {
+    return this.#spicy
+  }
+}
