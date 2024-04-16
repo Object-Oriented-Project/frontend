@@ -2,13 +2,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import MenuItem from './MenuItem';
+import MenuItem from './menuItem';
+import ItemModal from './ItemModal';
 
 const Menupage = () => {
   const [menuTab, setMenuTab] = useState("Recommended");
   const [loading, setLoading] = useState(false);
   const [menuData, setMenuData] = useState([]);
-  const [error, setError] = useState(null); // Add state for error handling
+  const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
 
   useEffect(() => {
     const fetchMenuData = async () => {
@@ -31,6 +35,18 @@ const Menupage = () => {
     setMenuTab(type);
   };
 
+  const openModal = (item) => {
+    setSelectedItem(item);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setSelectedItem(null);
+    setShowModal(false);
+  };
+
+
+
   return (
     <div>
       <div className="sm:mx-2 md:mx-4 mt-4">
@@ -44,35 +60,38 @@ const Menupage = () => {
         {/* All foods */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12 ">
 
-            {loading ? (
-              <p>Loading menu items...</p>
-            ) : error ? (
-              <p>Error fetching menu items: {error.message}</p>
-            ) : (
-              menuData
-                .filter(item => {
-                  if (menuTab === "Recommended") {
-                    return item.IsRecommended === true;
-                  } else {
-                    return item.ItemType === menuTab;
-                  }
-                })
+          {loading ? (
+            <p>Loading menu items...</p>
+          ) : error ? (
+            <p>Error fetching menu items: {error.message}</p>
+          ) : (
+            menuData
+              .filter(item => {
+                if (menuTab === "Recommended") {
+                  return item.IsRecommended === true;
+                } else {
+                  return item.ItemType === menuTab;
+                }
+              })
 
 
-                .map(item => (
-                  <MenuItem key={item.ID} item={item} />
-                  // <div key={item.ID}>
-                  //   <img src={item.PictureName}></img>
-                  //   <h3>{item.ItemName}</h3>
-                  //   <p>{item.ItemDescription}</p>
-                  //   <p>Price: ${item.ItemPriceLarge}</p>
-                  // </div>
-                ))
-            )}
-          </div>
+              .map(item => (
+                <MenuItem key={item.ID} item={item} openModal={openModal} />
+                // <div key={item.ID}>
+                //   <img src={item.PictureName}></img>
+                //   <h3>{item.ItemName}</h3>
+                //   <p>{item.ItemDescription}</p>
+                //   <p>Price: ${item.ItemPriceLarge}</p>
+                // </div>
+              ))
+          )}
         </div>
       </div>
-      );
+      {/* Render ItemModal if showModal is true */}
+      {showModal && selectedItem && <ItemModal item={selectedItem} closeModal={closeModal} />}
+    </div>
+
+  );
 };
 
 export default Menupage;
