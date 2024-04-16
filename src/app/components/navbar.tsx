@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
@@ -6,6 +7,13 @@ const Navbar = () => {
       <div className="static top-0">
         <div className="navbar bg-pink-200">
           <div className="flex-1">
+            <Image
+              src="/asset/logo.webp"
+              alt="logo"
+              width={70}
+              height={70}
+              // className="rounded-lg"
+            />
             <a className="btn btn-ghost text-xl">CAFKA</a>
           </div>
 

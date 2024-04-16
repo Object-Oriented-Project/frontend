@@ -1,65 +1,24 @@
 import Link from "next/link";
 
 const Banner = () => {
+  const banners = ["banner-1", "banner-2", "banner-3", "banner-4", "banner-5"];
+
   return (
-    <div className="relative ">
+    <div className="relative">
       <div className="carousel">
-        <div id="slide1" className="carousel-item relative w-full">
-          <img
-            src="https://daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
-            className="w-full"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide4" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide2" className="btn btn-circle">
-              ❯
-            </a>
+        {banners.map((banner, index) => (
+          <div key={index} id={`slide${index + 1}`} className="carousel-item relative w-full">
+            <img src={`/banner/${banner}.webp`} className="w-full" />
+            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+              <Link href={`#slide${index === 0 ? banners.length : index}`} passHref>
+                <span className="btn btn-circle">❮</span>
+              </Link>
+              <Link href={`#slide${index === banners.length - 1 ? 1 : index + 2}`} passHref>
+                <span className="btn btn-circle">❯</span>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div id="slide2" className="carousel-item relative w-full">
-          <img
-            src="https://daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
-            className="w-full"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide1" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide3" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide3" className="carousel-item relative w-full">
-          <img
-            src="https://daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg"
-            className="w-full"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide2" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide4" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide4" className="carousel-item relative w-svh">
-          <img
-            src="https://daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
-            className="w-full"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide3" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide1" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
