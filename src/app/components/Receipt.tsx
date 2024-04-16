@@ -1,19 +1,21 @@
-export class Receipt {
-  constructor(oid, uid, tableNo, custName, totalPrice) {
+import {cust} from "../page"
+export default  class Receipt {
+  oid : string;
+  uid : string;
+  tableNo : string;
+  custName : string 
+  totalPrice : number;
+
+  constructor(oid: string, uid: string, tableNo: string, custName:string, totalPrice:number) {
     this.oid = oid;
     this.uid = uid;
-    this.tableNo = tableNo;
-    this.custName = custName;
+    this.tableNo = tableNo; // ได้จากตอนเลือกโต๊ะ
+    this.custName = custName; // เอาจาก Obj cust ?
     this.totalPrice = totalPrice;
   }
 
   sendToKitchen() {
-    // Send order to kitchen
-    console.log("Order sent to kitchen");
+    // implement later
   }
 
-  updateStock() {
-    // Update stock
-    console.log("Stock updated");
-  }
 }

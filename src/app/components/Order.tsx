@@ -1,61 +1,116 @@
-class Order {
-  uid: string;
-  oid: string;
-  tableNo: string;
-  productDict: { [key: string]: number };
+import axios from "axios";
+import { Product } from "./Product";
+import { Food } from "./Food";
+import { Beverage } from "./Beverage";
+import { Bakery } from "./Bakery";
+import generatePayload from "promptpay-qr";
+export default class Order {
+  #uid: string;
+  #oid: string;
+  #products: any[]
+  #totalPrice: number;
 
-  constructor(uid,oid,tableNo) {
-      this.uid = uid;
-      this.oid = oid;
-      this.tableNo = tableNo;
-      this.productDict = {};
+  constructor(uid: string) {
+    this.#uid = uid;
+    this.#oid = Math.random().toString(36).substring(6);
+    this.#products = [];
+    this.#totalPrice = 0;
   }
 
-  addProduct(productId, quantity) {
-    if (this.productDict[productId]) {
-      this.productDict[productId] += quantity;
-    } else {
-      this.productDict[productId] = quantity;
+  addProduct(product: Product) {
+    
+      this.#products.push(product);
     }
-  }
+  
 
-  removeProduct(productId) {
-    delete this.productDict[productId];
+  removeProduct(product: Product) {
+    this.#products = this.#products.filter((p) => !this.productsAreEqual(p, product));
+    
   }
-
-  updateProduct(productId, quantity) {
-    if (this.productDict[productId]) {
-      this.productDict[productId] = quantity;
-    }
-  }
-
-  getTotalPrice(products) {
-    let totalPrice = 0;
-    // loop ดู quantity and productId
-    for (const productId in this.productDict) {
-      const quantity = this.productDict[productId];
-      const product = products.find(product => product.id === productId);
-      if (product) {
-        totalPrice += product.price * quantity;
+  productsAreEqual(product1: Product, product2: Product) {
+    // Check if the products have the same ID, name, and size
+    if (
+      product1.getId() === product2.getId() &&
+      product1.getName() === product2.getName() &&
+      product1.getSize() === product2.getSize()
+    ) {
+      // If both products are Bakery, check for the keto attribute
+      if (product1 instanceof Bakery && product2 instanceof Bakery) {
+        return product1.isKeto() === product2.isKeto();
       }
+      // If both products are Beverage, check for the sweetness attribute
+      if (product1 instanceof Beverage && product2 instanceof Beverage) {
+        return product1.getSweet() === product2.getSweet();
+      }
+      // For other types of products, no additional attributes need to be checked
+      return true;
     }
+    // If any of the basic attributes differ, return false
+    return false;
+  }
+  // updateProduct(product: Product, newQuantity: number) {
+  //   const productId = product.pid.toString();
+  //   if (this.#productDict.has(productId)) {
+  //     const existingProduct = this.#productDict.get(productId);
+  //     if (existingProduct) {
+  //       existingProduct.quantity = newQuantity;
+  //       this.#computeTotalPrice();
+  //     }
+  //   }
+  // }
+
+  computeTotalPrice() {
+    let totalPrice = 0;
+    for (const product of this.#products) {
+      totalPrice += product.getPrice() * product.getQuantity();
+    }
+    this.#totalPrice = totalPrice;
     return totalPrice;
   }
 
-  getOrderDetail(products) {
-    const orderDetail = [];
-    for (const productId in this.productDict) {
-      const quantity = this.productDict[productId];
-      const product = products.find(product => product.id === productId);
-      if (product) {
-        orderDetail.push({ product, quantity });
+  // getOrderDetail() {
+  //   this.#computeTotalPrice();
+  //   return {
+  //     uid: this.#uid,
+  //     oid: this.#oid,
+  //     productDict: this.#productDict,
+  //     totalPrice: this.#totalPrice
+  //   };
+  // }
+  getProducts() {
+    return this.#products.map(product => {
+      const attributes = {
+        id: product.getId(),
+        name: product.getName(),
+        price: product.getPrice(),
+        size: product.getSize(),
+        quantity: product.getQuantity()
+      };
+      if (product instanceof Food) {
+        attributes.spicy = product.getSpicy();
+      } else if (product instanceof Beverage) {
+        attributes.sweet = product.getSweet();
+      } else if (prodcut instanceof Bakery) {
+        attributes.keto = product.isKeto();
       }
-    }
-    return orderDetail;
+  
+      return { product, attributes };
+    });
   }
 
+  getProd() {
+    return this.#products;
+  }
   pay() {
-    // ทำการส่ง order ไปยัง kitchen
-    console.log('Order sent to kitchen');
+    
+    if (this.#totalPrice == 0) {
+      // If the total price is 0, do not send the order
+      //show error
+    }
+    else {
+      const qrPayload = generatePayload("1-1008-01474-58-0", { amount: this.#totalPrice });
+      // Set the QR code payload as state or return it for display
+      return qrPayload;      
+    }
   }
 }
