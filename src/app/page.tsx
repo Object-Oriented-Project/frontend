@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import {useEffect, useState} from 'react';
 import Customer from './components/Customer';
 export let cust : any
-
 export default function Home() {
   const router = useRouter(); 
   const [name, setName] = useState('');
@@ -18,8 +17,8 @@ export default function Home() {
         cust = new Customer(name);
       console.log(cust)
       setTimeout(() => {
-        router.push('/summary');
-    }, 2000); // 10 seconds delay (10000 milliseconds)
+        router.push('/menu');
+    }, 1000); // 10 seconds delay (10000 milliseconds)
     }
   }
 

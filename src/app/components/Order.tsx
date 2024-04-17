@@ -101,6 +101,9 @@ export default class Order {
   getProd() {
     return this.#products;
   }
+  getSize() {
+    return this.#products.length;
+  }
   pay() {
     
     if (this.#totalPrice == 0) {
