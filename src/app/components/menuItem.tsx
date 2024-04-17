@@ -6,11 +6,19 @@ import { Beverage } from "./Beverage";
 import { ord } from "../menu/page";
 
 const MenuItem = ({ item, openModal  }) => {
-  
+    let bgColorClass = '';
+    
+    if (item.ItemType === 'Beverage') {
+        bgColorClass = 'bg-teal-200';
+    } else if (item.ItemType === 'Bakery') {
+        bgColorClass = 'bg-amber-300';
+    } else if (item.ItemType === 'Food') {
+        bgColorClass = 'bg-gray-100';
+    }
     return (
         <div>
             <div key={item.ID} className="bg-white border border-gray-100 transition transform duration-700 hover:shadow-xl hover:scale-105 p-4 rounded-lg relative">
-                <span className="bg-pink-100 border border-pink-500 rounded-full text-black text-sm poppins px-4 py-1 inline-block mb-4">
+                <span className={`${bgColorClass} border border-pink-500 rounded-full text-black text-sm poppins px-4 py-1 inline-block mb-4`}>
                     {item.ItemType}
                 </span>
                 <Image

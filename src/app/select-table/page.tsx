@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import TableMap from "../components/TableMap";
 import { useRouter } from "next/navigation";
-
+import Receipt from "../components/Receipt";
+import {ord} from "../cart/page";
+import { cust } from "../page";
 export default function SelectTable() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedTable, setSelectedTable] = useState(null);
@@ -20,6 +22,7 @@ export default function SelectTable() {
     if (selectedOption && selectedTable) {
       console.log("Selected option:", selectedOption);
       console.log("Selected table:", selectedTable);
+      new Receipt(ord.getOID(), ord.getUID(), selectedTable, cust.getName(), "ONGOING").sendToKitchen();
       router.push("/qr"); // Redirect to /qr page
     } else {
       console.warn("Option and table must be selected");
@@ -53,12 +56,12 @@ export default function SelectTable() {
         <TableMap onTableClick={handleTableClick} />
       )}
       <div>
-        <button className="btn btn-success" onClick={handleNextButtonClick}>
+        <div className="btn btn-success" onClick={handleNextButtonClick}>
           Next
-        </button>
+        </div>
       </div>
       <div>
-        <button className="btn btn-error"> back </button>
+        <div className="btn btn-error" onClick={() => {router.push('/cart')}}> back </div>
       </div>
     </div>
   );

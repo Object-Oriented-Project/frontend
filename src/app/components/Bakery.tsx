@@ -3,7 +3,7 @@ import {Product} from './Product';
 export class Bakery extends Product {
   #keto : boolean
   
-  constructor(pid: number, name: string, price: number, size: string,quantity: number, keto: boolean) {
+  constructor(pid: number, name: string, price: number, size: string, quantity: number, keto: boolean) {
       super(pid, name, price, size, quantity);
       this.#keto = keto;
   }
@@ -11,4 +11,8 @@ export class Bakery extends Product {
   isKeto() {
     return this.#keto
   } 
+
+  toString() {
+    return `size : ${this.getSize()}\nketo :  ${this.isKeto()}`;
+  }
 }

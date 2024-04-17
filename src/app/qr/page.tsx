@@ -5,7 +5,7 @@ import {cust} from "../page";
 import Order from "../components/Order";
 import { useRouter } from "next/navigation";
 const generatePayload = require("promptpay-qr");
-import { ord } from "../summary/page";
+import { ord } from "../cart/page";
 export default function Qr() {
   // const [mobileNum, setMobileNum] = '000-000-0000'
   // const [IDCard, setIDCard] = '0-0000-00000-00-0'
