@@ -42,22 +42,23 @@ export default class Order {
       if (product1 instanceof Beverage && product2 instanceof Beverage) {
         return product1.getSweet() === product2.getSweet();
       }
+
+      if (product1 instanceof Food && product2 instanceof Food) {
+        return product1.getSpicy() === product2.getSpicy();
+      }
       // For other types of products, no additional attributes need to be checked
       return true;
     }
     // If any of the basic attributes differ, return false
     return false;
   }
-  // updateProduct(product: Product, newQuantity: number) {
-  //   const productId = product.pid.toString();
-  //   if (this.#productDict.has(productId)) {
-  //     const existingProduct = this.#productDict.get(productId);
-  //     if (existingProduct) {
-  //       existingProduct.quantity = newQuantity;
-  //       this.#computeTotalPrice();
-  //     }
-  //   }
-  // }
+  updateProduct(product: Product, newQuantity: number) {
+    const index = this.#products.findIndex(p => this.productsAreEqual(p, product));
+    if (index !== -1) {
+      this.#products[index].setQuantity(newQuantity);
+      this.#totalPrice = this.computeTotalPrice();
+    }
+  }
 
   computeTotalPrice() {
     let totalPrice = 0;
@@ -90,7 +91,7 @@ export default class Order {
         attributes.spicy = product.getSpicy();
       } else if (product instanceof Beverage) {
         attributes.sweet = product.getSweet();
-      } else if (prodcut instanceof Bakery) {
+      } else if (product instanceof Bakery) {
         attributes.keto = product.isKeto();
       }
   
@@ -100,6 +101,9 @@ export default class Order {
 
   getProd() {
     return this.#products;
+  }
+  getSize() {
+    return this.#products.length;
   }
   pay() {
     
@@ -112,5 +116,11 @@ export default class Order {
       // Set the QR code payload as state or return it for display
       return qrPayload;      
     }
+  }
+  getUID() {
+    return this.#uid;
+  }
+  getOID() {
+    return this.#oid;
   }
 }

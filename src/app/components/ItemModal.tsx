@@ -1,11 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ord } from "../menu/page";
+import { Beverage } from "./Beverage";
+import { Bakery } from "./Bakery";
+import { Food } from "./Food";
 
 const Modal = ({ item, closeModal }) => {
   const [selectedSize, setSelectedSize] = useState("Large");
   const [sweetLevel, setSweetLevel] = useState("Normal");
   const [quantity, setQuantity] = useState(1);
-
+  const [ketoFlour, setKetoFlour] = useState(false); // State to track checkbox value
+  const [spicyLevel, setSpicyLevel] = useState(0); // State to track spicy level [0-4
   const handleSizeChange = (size) => {
     setSelectedSize(size);
   };
@@ -13,9 +18,12 @@ const Modal = ({ item, closeModal }) => {
   const handleSweetLevelChange = (level) => {
     setSweetLevel(level);
   };
-
+ const handleSpicyLevel = (level) => {
+    setSpicyLevel(level);
+ }
   const handleIncrement = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
+    console.log("quantity incre ", quantity)
   };
 
   const handleDecrement = () => {
@@ -23,13 +31,24 @@ const Modal = ({ item, closeModal }) => {
       setQuantity(prevQuantity => prevQuantity - 1);
     }
   };
+  
+  const addToCart = (item) => {
+    let finalQuantity = quantity; 
+    console.log("quantity add to cart ", finalQuantity)
 
-
-
-
+    if (item.ItemType === "Beverage"){
+      ord.addProduct(new Beverage(item.ID, item.ItemName, item[`ItemPrice${selectedSize}`], selectedSize, finalQuantity,sweetLevel));
+    } else if (item.ItemType === "Bakery") {
+      ord.addProduct(new Bakery(item.ID, item.ItemName, item[`ItemPrice${selectedSize}`], selectedSize, finalQuantity, ketoFlour));
+    } else { // Food
+      ord.addProduct(new Food(item.ID, item.ItemName, item[`ItemPrice${selectedSize}`], selectedSize, finalQuantity, spicyLevel));
+    }
+    
+  }
+ 
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50" role="dialog">
-      <div className="modal-box bg-white border border-gray-100 transition transform duration-700 hover:shadow-xl hover:scale-105 p-10 rounded-lg relative">
+      <div className="modal-box bg-white border border-gray-100 transition transform duration-700 hover:shadow-xl scale-105 p-10 rounded-lg relative">
         <img
           className="w-64 mx-auto transform transition duration-300 hover:scale-105"
           src={`/menu/${item.PictureName}`}
@@ -77,7 +96,38 @@ const Modal = ({ item, closeModal }) => {
           </div>
         )}
 
+        {item.ItemType === "Food" && (
+          
+          <div className="form-control mb-4">
+            <label className="label cursor-pointer">
+              <span className="label-text font-md">Select Spicy Level:</span>
+              <select
+                value={spicyLevel}
+                onChange={(e) => handleSpicyLevel(e.target.value)}
+                className="select select-bordered w-full"
+              >
+                <option value="0">0 : zero feeling</option>
+                <option value="1">1 : Kid level</option>
+                <option value="2">2 : As usual</option>
+                <option value="3">3 : Burn Baby Burn</option>
+                <option value="4">4 : No longer wanna live</option>
 
+              </select>
+            </label>
+          </div>
+        )}
+
+{item.ItemType === "Bakery" && (
+          <div className="flex mt-3 mb-3 ">
+          <label className="mr-5">Keto flour</label>
+          <input 
+            type="checkbox" 
+            className="checkbox rounded border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+            checked={ketoFlour} 
+            onChange={(e) => setKetoFlour(e.target.checked)} // Update ketoFlour state when checkbox is changed
+          />
+          </div>
+        )}
 
         <h2 className="text-gray-900 poppins text-xl font-bold justify-self-end">{item[`ItemPrice${selectedSize}`]} THB</h2>
 
@@ -139,7 +189,7 @@ const Modal = ({ item, closeModal }) => {
 
 
         <div className="modal-action">
-          <label htmlFor={`my_modal_${item.ID}`} className="btn bg-pink-400">
+          <label htmlFor={`my_modal_${item.ID}`} className="btn bg-pink-400" onClick={() => {addToCart(item) ; console.log(ord.getProducts()); closeModal()}} >
             Add To Cart
           </label>
         </div>

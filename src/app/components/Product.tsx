@@ -5,12 +5,12 @@
     #size: string;
     #quantity: number;
 
-    constructor(pid: number, name: string, price: number, size: string, quantity:num) {
+    constructor(pid: number, name: string, price: number, size: string, quantity:number) {
       this.#pid = pid;
       this.#name = name;
       this.#price = price;
       this.#size = size;
-      this.#quantity = 1;
+      this.#quantity = quantity;
     }
     getPrice() {
       return this.#price;
@@ -33,6 +33,17 @@
     increaseQuantity() {
       this.#quantity++;
     }
+    decreseQuantity() {
+      this.#quantity--;
+    }
+    setQuantity(newQuantity: number) {
+      this.#quantity = newQuantity;
+    }
+    getTotalPrice() {
+      return this.#price * this.#quantity;
+    
+    }
+    
   }
   
   
