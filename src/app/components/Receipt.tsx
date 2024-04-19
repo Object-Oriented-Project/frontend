@@ -49,7 +49,8 @@ export default  class Receipt {
       "to": "kitchen",
       "customer_id": parseInt(this.#uid),
       "customer_name": this.#custName,
-      "order_id": parseInt(this.#oid), 
+      "order_id": parseInt(this.#oid),
+      "order_table": this.#tableNo,  
       "order_status": this.#status,
       "order_items": orderItems
 

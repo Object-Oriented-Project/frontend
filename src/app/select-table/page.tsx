@@ -27,7 +27,7 @@ export default function SelectTable() {
       tableNo = selectedTable;
       router.push("/qr"); // Redirect to /qr page
     } else if (selectedOption === "takeHome") {
-      tableNo = "";
+      tableNo = "-";
       router.push("/qr"); // Redirect to /qr page
 
     }else {

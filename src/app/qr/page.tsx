@@ -23,6 +23,7 @@ export default function Qr() {
 
   const handleSendToKitchen = () => {
       const receipt = new Receipt(ord.getOID(), ord.getUID(), tableNo, cust.getName(), "ONGOING",ord)
+    console.log("OID : ", ord.getOID())
       receipt.sendToKitchen()
 
   };

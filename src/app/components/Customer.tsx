@@ -4,7 +4,7 @@ export default class Customer {
     
     constructor(name: string) {
         this.#name = name;
-        this.#uid = Math.random().toString(36).substring(5);
+        this.#uid = (Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000).toString()
     }
     public getName(): string {
         return this.#name;

@@ -13,7 +13,7 @@ export default class Order {
 
   constructor(uid: string) {
     this.#uid = uid;
-    this.#oid = Math.random().toString(36).substring(6);
+    this.#oid = (Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000).toString();
     this.#products = [];
     this.#totalPrice = 0;
   }
