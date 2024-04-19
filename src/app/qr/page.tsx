@@ -5,10 +5,9 @@ import { cust } from "../page";
 import Order from "../components/Order";
 import { useRouter } from "next/navigation";
 const generatePayload = require("promptpay-qr");
-import { ord } from "../cart/page";
-import Image from "next/image";
-
-
+import { ord } from "../page";
+import { tableNo } from "../select-table/page";
+import Receipt from "../components/Receipt";
 export default function Qr() {
   // const [mobileNum, setMobileNum] = '000-000-0000'
   // const [IDCard, setIDCard] = '0-0000-00000-00-0'
@@ -23,9 +22,10 @@ export default function Qr() {
 
 
   const handleSendToKitchen = () => {
-    // const receipt = new Receipt(1, 1, "Table 1", "John Doe", 50);
-    // receipt.sendToKitchen();
-    router.push("/summary")
+      const receipt = new Receipt(ord.getOID(), ord.getUID(), tableNo, cust.getName(), "ONGOING",ord)
+    console.log("OID : ", ord.getOID())
+      receipt.sendToKitchen()
+
   };
   return (
     <div className=" min-h-screen bg-gradient-to-b from-[#ffeaea] to-[#ffcccc] from-20% py-6 ">

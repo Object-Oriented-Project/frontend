@@ -3,9 +3,9 @@ import {Product} from "./Product";
 
 export class Food extends Product {
 
-  #spicy : number;
+  #spicy : string;
 
-  constructor(pid: number, name: string, price: number, size: string, quantity:number, spicy: number) {
+  constructor(pid: number, name: string, price: number, size: string, quantity:number, spicy: string) {
     super(pid, name, price, size,quantity);
     this.#spicy = spicy;
   }

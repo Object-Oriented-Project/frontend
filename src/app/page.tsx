@@ -3,7 +3,8 @@ import Slideshow from "./components/SlideShow";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 import Customer from './components/Customer';
-export let cust: any
+import Order from "./components/Order";
+
 export default function Home() {
   const router = useRouter();
   const [name, setName] = useState('');
@@ -14,16 +15,14 @@ export default function Home() {
 
   const handleButtonClick = () => {
     if (name.trim() !== '') {
-      cust = new Customer(name);
-      console.log(cust)
+        cust = new Customer(name);
+        ord = new Order(cust.getUid());
       setTimeout(() => {
         router.push('/menu');
-      }, 1000); // 10 seconds delay (10000 milliseconds)
+        
+    }, 1000); // 10 seconds delay (10000 milliseconds)
     }
   }
-
-
-
 
   return (
     <div>
@@ -67,7 +66,12 @@ export default function Home() {
           </div>
           </div>
       </section>
+      
     </div>
    
   );
 }
+export let cust : any
+export let ord : Order;
+
+

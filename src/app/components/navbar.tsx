@@ -3,12 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../static/cafka.png";
 import { useRouter } from "next/navigation";
-import { ord } from "../menu/page";
+import {ord} from "../page";
 import Order from "./Order";
+import { useEffect, useState } from "react";
+import { Bakery } from "./Bakery";
+import { Food } from "./Food";
 
-const Navbar = ({ ord })=> {
+const Navbar = ()=> {
   const router = useRouter(); 
-
+  
   return (
     <nav>
       <div className="static top-0">
@@ -21,14 +24,8 @@ const Navbar = ({ ord })=> {
               height={70}
               // className="rounded-lg"
             />
-            <a className="btn btn-ghost text-xl">CAFKA</a>
+            <div className="btn btn-ghost text-xl" onClick={()=> router.push('/')}>CAFKA</div>
           </div>
-
-          <label className="swap">
-            <input type="checkbox" />
-            <div className="swap-on">ENG</div>
-            <div className="swap-off">ไทย</div>
-          </label>
 
           <div className="flex-none">
             <div className="dropdown dropdown-end">
@@ -66,6 +63,9 @@ const Navbar = ({ ord })=> {
                   <div className="card-actions">
                     <button className="btn btn-primary btn-block" onClick={ () => router.push("/cart")}>
                       View a Cart
+                    </button>
+                    <button className="btn btn-secondary btn-block" onClick={ () => ord.addProduct(new Food(10,"A",159,"LARGE",1,"NORMAL"))}>
+                      HIHI\
                     </button>
                   </div>
                 </div>

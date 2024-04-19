@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import TableMap from "../components/TableMap";
 import { useRouter } from "next/navigation";
 import Receipt from "../components/Receipt";
-import { ord } from "../cart/page";
+// import {ord} from "../cart/page";
 import { cust } from "../page";
-import Image from "next/image";
-
-
+import Order from "../components/Order";
+export let tableNo : string;
 export default function SelectTable() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedTable, setSelectedTable] = useState(null);
@@ -22,12 +21,16 @@ export default function SelectTable() {
   };
 
   const handleNextButtonClick = () => {
-    if (selectedOption && selectedTable) {
+    if (selectedOption == "sitIn" && selectedTable) {
       console.log("Selected option:", selectedOption);
       console.log("Selected table:", selectedTable);
-      new Receipt(ord.getOID(), ord.getUID(), selectedTable, cust.getName(), "ONGOING").sendToKitchen();
+      tableNo = selectedTable;
       router.push("/qr"); // Redirect to /qr page
-    } else {
+    } else if (selectedOption === "takeHome") {
+      tableNo = "-";
+      router.push("/qr"); // Redirect to /qr page
+
+    }else {
       console.warn("Option and table must be selected");
     }
   };
