@@ -11,7 +11,7 @@ import { useState } from "react";
 export default function Menu() {
     // create new Order obj for each customer
     // ord = new Order(cust.getUid());
-   
+
     return (
         <div>
             <Navbar />
