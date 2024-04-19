@@ -30,9 +30,9 @@ const MenuItem = ({ item, openModal  }) => {
                 />
 
                 <div className="flex flex-col items-center my-3 space-y-2">
-                    <h1 className="text-gray-900 poppins text-lg">{item.ItemName}</h1>
+                    <h1 className="text-gray-900 poppins text-xl font-bold">{item.ItemName}</h1>
                     <p className="text-gray-500 poppins text-sm text-center">{item.ItemDescription}</p>
-                    <h2 className="text-gray-900 poppins text-2xl font-bold">{item.ItemPriceLarge} THB</h2>
+                    <h2 className="text-gray-900 poppins text-lg font-bold">{item.ItemPriceLarge} THB</h2>
 
                     <label
                         htmlFor={`my_modal_${item.ID}`}

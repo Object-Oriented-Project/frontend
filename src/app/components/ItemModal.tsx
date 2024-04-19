@@ -57,7 +57,7 @@ const Modal = ({ item, closeModal }) => {
           src={`/menu/${item.PictureName}`}
           alt=""
         />
-        <h1 className="text-gray-900 poppins text-lg">{item.ItemName}</h1>
+        <h1 className="text-gray-900 poppins text-xl font-bold">{item.ItemName}</h1>
         <p className="text-gray-500 poppins text-sm ">{item.ItemDescription}</p>
 
         {item.ItemType === "Beverage" && (
@@ -127,10 +127,10 @@ const Modal = ({ item, closeModal }) => {
           </div>
         )}
 
-        <h2 className="text-gray-900 poppins text-2xl font-bold justify-self-end">{item[`ItemPrice${selectedSize}`]} THB</h2>
+        <h2 className="text-gray-900 poppins text-xl font-bold justify-self-end">{item[`ItemPrice${selectedSize}`]} THB</h2>
 
         {/* add and remove item number*/}
-        <div className="flex justify-between items-center mt-2">
+        <div className="flex justify-center items-center mt-12">
           <div className="flex items-center gap-4">
             <button
               onClick={handleDecrement}
