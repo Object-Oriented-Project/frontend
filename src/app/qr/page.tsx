@@ -7,6 +7,9 @@ import { useRouter } from "next/navigation";
 const generatePayload = require("promptpay-qr");
 import { ord } from "../page";
 import { tableNo } from "../select-table/page";
+import Image from "next/image";
+
+
 import Receipt from "../components/Receipt";
 export default function Qr() {
   // const [mobileNum, setMobileNum] = '000-000-0000'

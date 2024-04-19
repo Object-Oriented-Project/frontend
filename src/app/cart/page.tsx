@@ -61,12 +61,8 @@ export default function Cart() {
   };
 
   return (
-    <div className="min-h-screen relative">
-     
-
-        <div className="rounded-3xl border-2 bg-white border-gray-200 p-4  px-10 mb-24 lg:p-8 mx-80  max-lg:max-w-lg max-lg:mx-auto gap-y-4">
-
-          <div className="py-4 relative">
+    <div>
+          <div className="py-10 relative">     
             <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg " onClick={() => router.push("/menu")}>
               Go back
             </button>
@@ -174,7 +170,7 @@ onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
                     </button>
                   </div>
                   <h6 className="text-indigo-600 font-manrope font-bold text-2xl leading-9 text-right">
-                    {item.product.getTotalPrice()}
+                  {String(item.product.getTotalPrice())}
                   </h6>
                 </div>
               </div>
@@ -193,11 +189,16 @@ onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
             </div>
           </div>
           <div className="max-lg:max-w-lg max-lg:mx-auto">
-            <button className="rounded-full py-4 px-6 bg-indigo-600 text-white font-semibold text-lg w-full text-center transition-all duration-500 hover:bg-indigo-700 "
-            onClick={() => {router.push("/select-table")}}>
-              Checkout
-            </button>
-          </div>
+  <button
+    className="rounded-full py-4 px-6 bg-indigo-400 text-white font-semibold text-lg w-full text-center transition-all duration-500"
+    onClick={() => {
+      router.push("/select-table");
+    }}
+    disabled={ord.getSize() === 0} // Disable the button if ord.getSize() equals 0
+  >
+    Checkout
+  </button>
+</div>
         </div>
       </div>
     </div>

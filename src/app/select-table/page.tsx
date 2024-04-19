@@ -7,6 +7,9 @@ import Receipt from "../components/Receipt";
 import { cust } from "../page";
 import Order from "../components/Order";
 export let tableNo : string;
+import Image from "next/image";
+
+
 export default function SelectTable() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedTable, setSelectedTable] = useState(null);
