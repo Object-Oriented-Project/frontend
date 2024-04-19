@@ -1,17 +1,12 @@
-'use client';
-import { useEffect, useState, useRef } from 'react';
+"use client";
+import { useEffect, useState, useRef } from "react";
 
-
-const images = [
-  '/asset/promo1.svg',
-  '/asset/promo2.svg',
-  '/asset/promo3.svg',
-];
+const images = ["/asset/promo1.svg", "/asset/promo2.svg", "/asset/promo3.svg"];
 
 const imagesx = [
-  '/asset/promo1x.svg',
-  '/asset/promo2x.svg',
-  '/asset/promo3x.svg',
+  "/asset/promo1x.svg",
+  "/asset/promo2x.svg",
+  "/asset/promo3x.svg",
 ];
 
 export default function Slideshow() {
@@ -36,7 +31,7 @@ export default function Slideshow() {
     return () => {
       clearInterval(intervalId);
     };
-  }, [currentImages]);
+  }, [currentIndex, currentImages, changeBackgroundImage]);
 
   // Initialize the background image
   useEffect(() => {
@@ -58,22 +53,25 @@ export default function Slideshow() {
 
   useEffect(() => {
     // Create a media query for large screens
-    const mediaQuery = window.matchMedia('(min-width: 1024px)');
-    
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+
     // Add event listener for changes in screen size
-    mediaQuery.addEventListener('change', handleScreenSizeChange);
-    
+    mediaQuery.addEventListener("change", handleScreenSizeChange);
+
     // Initial check
     handleScreenSizeChange(mediaQuery);
 
     // Cleanup event listener on component unmount
     return () => {
-      mediaQuery.removeEventListener('change', handleScreenSizeChange);
+      mediaQuery.removeEventListener("change", handleScreenSizeChange);
     };
   }, []);
 
   return (
-    <div ref={bgContainerRef} className="h-screen w-screen bg-cover bg-center bg-no-repeat">
+    <div
+      ref={bgContainerRef}
+      className="h-screen w-screen bg-cover bg-center bg-no-repeat"
+    >
       {/* Your content here */}
     </div>
   );

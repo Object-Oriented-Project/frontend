@@ -8,25 +8,26 @@ import generatePayload from "promptpay-qr";
 export default class Order {
   #uid: string;
   #oid: string;
-  #products: any[]
+  #products: any[];
   #totalPrice: number;
 
   constructor(uid: string) {
     this.#uid = uid;
-    this.#oid = (Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000).toString();
+    this.#oid = (
+      Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000
+    ).toString();
     this.#products = [];
     this.#totalPrice = 0;
   }
 
   addProduct(product: Product) {
-    
-      this.#products.push(product);
-    }
-  
+    this.#products.push(product);
+  }
 
   removeProduct(product: Product) {
-    this.#products = this.#products.filter((p) => !this.productsAreEqual(p, product));
-    
+    this.#products = this.#products.filter(
+      (p) => !this.productsAreEqual(p, product),
+    );
   }
   productsAreEqual(product1: Product, product2: Product) {
     // Check if the products have the same ID, name, and size
@@ -54,7 +55,9 @@ export default class Order {
     return false;
   }
   updateProduct(product: Product, newQuantity: number) {
-    const index = this.#products.findIndex(p => this.productsAreEqual(p, product));
+    const index = this.#products.findIndex((p) =>
+      this.productsAreEqual(p, product),
+    );
     if (index !== -1) {
       this.#products[index].setQuantity(newQuantity);
       this.#totalPrice = this.computeTotalPrice();
@@ -71,13 +74,13 @@ export default class Order {
   }
 
   getProducts() {
-    return this.#products.map(product => {
+    return this.#products.map((product) => {
       const attributes = {
         id: product.getId(),
         name: product.getName(),
         price: product.getPrice(),
         size: product.getSize(),
-        quantity: product.getQuantity()
+        quantity: product.getQuantity(),
       };
       if (product instanceof Food) {
         attributes.spicy = product.getSpicy();
@@ -86,7 +89,7 @@ export default class Order {
       } else if (product instanceof Bakery) {
         attributes.keto = product.isKeto();
       }
-  
+
       return { product, attributes };
     });
   }
@@ -95,15 +98,15 @@ export default class Order {
     return this.#products.length;
   }
   pay() {
-    
     if (this.#totalPrice == 0) {
       // If the total price is 0, do not send the order
       //show error
-    }
-    else {
-      const qrPayload = generatePayload("1-1008-01474-58-0", { amount: this.#totalPrice });
+    } else {
+      const qrPayload = generatePayload("1-1008-01474-58-0", {
+        amount: this.#totalPrice,
+      });
       // Set the QR code payload as state or return it for display
-      return qrPayload;      
+      return qrPayload;
     }
   }
   getUID() {
