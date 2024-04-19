@@ -79,12 +79,7 @@ const Menupage = () => {
 
               .map(item => (
                 <MenuItem key={item.ID} item={item} openModal={openModal} />
-                // <div key={item.ID}>
-                //   <img src={item.PictureName}></img>
-                //   <h3>{item.ItemName}</h3>
-                //   <p>{item.ItemDescription}</p>
-                //   <p>Price: ${item.ItemPriceLarge}</p>
-                // </div>
+                
               ))
           )}
         </div>

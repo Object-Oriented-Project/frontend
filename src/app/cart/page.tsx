@@ -3,18 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Food } from "../components/Food";
 import Order from "../components/Order";
 import { Product } from "../components/Product";
-// import { ord } from "../menu/page";
 import { Beverage } from "../components/Beverage";
 import { Bakery } from "../components/Bakery";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { ord } from "../page";
 
-export let ord : any;
-ord = new Order("23")
-ord.addProduct(new Food(11, "Mama Tom Yum Kung", 159, "L", 1, 1))
-ord.addProduct(new Beverage(28, "Soft Drink", 99, "M", 2, "half"))
-ord.addProduct(new Bakery(4, "Cake", 100, "L", 1, true))
 export default function Cart() {
   const router = useRouter();
   const [menuImages, setMenuImages] = useState([]);
@@ -45,6 +40,8 @@ export default function Cart() {
   }, []);
 
   useEffect(() => {
+    
+
     setProducts(ord.getProducts().map((item: any) => ({ product: item.product })));
   }, []);
 
@@ -173,7 +170,7 @@ onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
                     </button>
                   </div>
                   <h6 className="text-indigo-600 font-manrope font-bold text-2xl leading-9 text-right">
-                    {item.product.getTotalPrice()}
+                  {String(item.product.getTotalPrice())}
                   </h6>
                 </div>
               </div>
@@ -192,11 +189,16 @@ onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
             </div>
           </div>
           <div className="max-lg:max-w-lg max-lg:mx-auto">
-            <button className="rounded-full py-4 px-6 bg-indigo-600 text-white font-semibold text-lg w-full text-center transition-all duration-500 hover:bg-indigo-700 "
-            onClick={() => {router.push("/select-table")}}>
-              Checkout
-            </button>
-          </div>
+  <button
+    className="rounded-full py-4 px-6 bg-indigo-400 text-white font-semibold text-lg w-full text-center transition-all duration-500"
+    onClick={() => {
+      router.push("/select-table");
+    }}
+    disabled={ord.getSize() === 0} // Disable the button if ord.getSize() equals 0
+  >
+    Checkout
+  </button>
+</div>
         </div>
       </div>
     </div>

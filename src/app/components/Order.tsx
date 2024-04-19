@@ -4,6 +4,7 @@ import { Food } from "./Food";
 import { Beverage } from "./Beverage";
 import { Bakery } from "./Bakery";
 import generatePayload from "promptpay-qr";
+
 export default class Order {
   #uid: string;
   #oid: string;
@@ -69,15 +70,6 @@ export default class Order {
     return totalPrice;
   }
 
-  // getOrderDetail() {
-  //   this.#computeTotalPrice();
-  //   return {
-  //     uid: this.#uid,
-  //     oid: this.#oid,
-  //     productDict: this.#productDict,
-  //     totalPrice: this.#totalPrice
-  //   };
-  // }
   getProducts() {
     return this.#products.map(product => {
       const attributes = {
@@ -99,9 +91,6 @@ export default class Order {
     });
   }
 
-  getProd() {
-    return this.#products;
-  }
   getSize() {
     return this.#products.length;
   }

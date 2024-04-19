@@ -1,16 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { ord } from "../menu/page";
+import { ord } from "../page";
 import { Beverage } from "./Beverage";
 import { Bakery } from "./Bakery";
 import { Food } from "./Food";
 
 const Modal = ({ item, closeModal }) => {
   const [selectedSize, setSelectedSize] = useState("Large");
-  const [sweetLevel, setSweetLevel] = useState("Normal");
+  const [sweetLevel, setSweetLevel] = useState("NORMAL");
   const [quantity, setQuantity] = useState(1);
   const [ketoFlour, setKetoFlour] = useState(false); // State to track checkbox value
-  const [spicyLevel, setSpicyLevel] = useState(0); // State to track spicy level [0-4
+  const [spicyLevel, setSpicyLevel] = useState("NORMAL"); // State to track spicy level [0-4
+  
   const handleSizeChange = (size) => {
     setSelectedSize(size);
   };
@@ -34,8 +35,6 @@ const Modal = ({ item, closeModal }) => {
   
   const addToCart = (item) => {
     let finalQuantity = quantity; 
-    console.log("quantity add to cart ", finalQuantity)
-
     if (item.ItemType === "Beverage"){
       ord.addProduct(new Beverage(item.ID, item.ItemName, item[`ItemPrice${selectedSize}`], selectedSize, finalQuantity,sweetLevel));
     } else if (item.ItemType === "Bakery") {
@@ -43,7 +42,11 @@ const Modal = ({ item, closeModal }) => {
     } else { // Food
       ord.addProduct(new Food(item.ID, item.ItemName, item[`ItemPrice${selectedSize}`], selectedSize, finalQuantity, spicyLevel));
     }
-    
+    let totalQuantity = 0;
+    ord.getProducts().forEach(item => {
+        totalQuantity += item.product.getQuantity();
+    });
+    console.log("Total quantity:", totalQuantity);
   }
  
   return (
@@ -83,12 +86,9 @@ const Modal = ({ item, closeModal }) => {
                     onChange={(e) => handleSweetLevelChange(e.target.value)}
                     className="select select-bordered w-full border border-gray-300 rounded-lg"
                   >
-                    <option value="Extra Sweet">Extra sweet 120%</option>
-                    <option value="Normal">Normal 100%</option>
-                    <option value="Less Sweet">Less Sweet 75%</option>
-                    <option value="Half Sweet">Half Sweet 50%</option>
-                    <option value="Quarter Sweet">Quarter Sweet 25%</option>
-                    <option value="No Sweet">No Sweet 0%</option>
+                    <option value="MORE">Extra sweet 150%</option>
+                    <option value="NORMAL">Normal 100%</option>
+                    <option value="LESS">Less Sweet 50%</option>
                   </select>
                 </label>
               </div>
@@ -106,11 +106,9 @@ const Modal = ({ item, closeModal }) => {
                 onChange={(e) => handleSpicyLevel(e.target.value)}
                 className="select select-bordered w-full"
               >
-                <option value="0">0 : zero feeling</option>
-                <option value="1">1 : Kid level</option>
-                <option value="2">2 : As usual</option>
-                <option value="3">3 : Burn Baby Burn</option>
-                <option value="4">4 : No longer wanna live</option>
+                <option value="MORE">Extra Spicy 150%</option>
+                <option value="NORMAL">Normal 100%</option>
+                <option value="LESS">Less Spicy 50%</option>
 
               </select>
             </label>

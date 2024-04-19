@@ -3,7 +3,8 @@ import Slideshow from "./components/SlideShow";
 import { useRouter } from "next/navigation";
 import {useEffect, useState} from 'react';
 import Customer from './components/Customer';
-export let cust : any
+import Order from "./components/Order";
+
 export default function Home() {
   const router = useRouter(); 
   const [name, setName] = useState('');
@@ -15,15 +16,13 @@ export default function Home() {
   const handleButtonClick = () => {
     if (name.trim() !== '') {
         cust = new Customer(name);
-      console.log(cust)
+        ord = new Order(cust.getUid());
       setTimeout(() => {
         router.push('/menu');
+        
     }, 1000); // 10 seconds delay (10000 milliseconds)
     }
   }
-
-  
-
 
   return (
     <div>
@@ -61,10 +60,18 @@ export default function Home() {
         </div>
       </section>
       <section className="relative">
-        <div className="absolute left-1/2 transform -translate-x-1/2" >
+        <div className="absolute left-1/2 transform -translate-x-1/2">
           <Slideshow />
         </div>
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center text-gray-500">
+          Swipe left or right to navigate
+        </div>
       </section>
+      
     </div>
   );
 }
+export let cust : any
+export let ord : Order;
+
+
