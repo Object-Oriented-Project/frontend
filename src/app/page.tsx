@@ -1,28 +1,27 @@
-'use client'
+"use client";
 import Slideshow from "./components/SlideShow";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from 'react';
-import Customer from './components/Customer';
+import { useEffect, useState } from "react";
+import Customer from "./components/Customer";
 import Order from "./components/Order";
 
 export default function Home() {
   const router = useRouter();
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
   const handleInputChange = (event) => {
     setName(event.target.value);
   };
 
   const handleButtonClick = () => {
-    if (name.trim() !== '') {
-        cust = new Customer(name);
-        ord = new Order(cust.getUid());
+    if (name.trim() !== "") {
+      cust = new Customer(name);
+      ord = new Order(cust.getUid());
       setTimeout(() => {
-        router.push('/menu');
-        
-    }, 1000); // 10 seconds delay (10000 milliseconds)
+        router.push("/menu");
+      }, 1000); // 10 seconds delay (10000 milliseconds)
     }
-  }
+  };
 
   return (
     <div>
@@ -54,24 +53,31 @@ export default function Home() {
                   <button
                     className="flex justify-center rounded-xl bg-pink-100 pt-3 sm:w-20 lg:w-40 ms-10 transition  hover:shadow-xl  transform duration-700 hover:scale-105 hover:bg-black hover:text-white "
                     onClick={handleButtonClick}
-                    disabled={name.trim() === ''}
+                    disabled={name.trim() === ""}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 hover:text-white">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6 hover:text-white"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                      />
                     </svg>
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          </div>
+        </div>
       </section>
-      
     </div>
-   
   );
 }
-export let cust : any
-export let ord : Order;
-
-
+export let cust: any;
+export let ord: Order;

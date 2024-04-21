@@ -50,18 +50,15 @@ export default function KitchenPage() {
     return () => {
       socket.close();
     };
-  }
-    , []);
+  }, []);
 
   useEffect(() => {
     //use axios
     axios.get("http://localhost:3001/api/menu").then((response) => {
       console.log("Received orders from the server", response.data);
       setMenuItems(response.data);
-    }
-    );
-  }
-    , []);
+    });
+  }, []);
 
   return (
     <div>
@@ -118,10 +115,11 @@ export default function KitchenPage() {
                       </div>
                       <div>
                         <button
-                          className={`btn ${order.order_status === "ONGOING"
-                            ? "btn-warning"
-                            : "btn-success"
-                            }`}
+                          className={`btn ${
+                            order.order_status === "ONGOING"
+                              ? "btn-warning"
+                              : "btn-success"
+                          }`}
                           onClick={(e) => {
                             e.stopPropagation();
                             handleStatusChange(order.order_id, "FINISHED");
@@ -147,10 +145,18 @@ export default function KitchenPage() {
                                   />
                                   <div className=" flex flex-col gap-2 mx-5">
                                     <span className="text-lg font-bold">
-                                      {menuItems.find((mi) => mi.ID === item.menu_id).ItemName}
+                                      {
+                                        menuItems.find(
+                                          (mi) => mi.ID === item.menu_id,
+                                        ).ItemName
+                                      }
                                     </span>
                                     <span className="text-xs">
-                                      {menuItems.find((mi) => mi.ID === item.menu_id).ItemDescription}
+                                      {
+                                        menuItems.find(
+                                          (mi) => mi.ID === item.menu_id,
+                                        ).ItemDescription
+                                      }
                                     </span>
                                     <span className="text-sm flex">
                                       <p className=" font-bold">Quantity:</p>
@@ -160,19 +166,25 @@ export default function KitchenPage() {
                                     </span>
                                     <span className="text-sm flex">
                                       <p className=" font-bold">Spice Level:</p>
-                                      <span className={`badge ${item.spicy_level === "Low" ? "badge-success" : item.spicy_level === "Medium" ? "badge-warning" : "badge-error"}`}>
+                                      <span
+                                        className={`badge ${item.spicy_level === "Low" ? "badge-success" : item.spicy_level === "Medium" ? "badge-warning" : "badge-error"}`}
+                                      >
                                         {item.spicy_level}
                                       </span>
                                     </span>
                                     <span className="text-sm flex">
                                       <p className=" font-bold">Size:</p>
-                                      <span className={`badge ${item.size === "SMALL" ? "badge-success" : item.size === "MEDIUM" ? "badge-warning" : "badge-error"}`}>
+                                      <span
+                                        className={`badge ${item.size === "SMALL" ? "badge-success" : item.size === "MEDIUM" ? "badge-warning" : "badge-error"}`}
+                                      >
                                         {item.size}
                                       </span>
                                     </span>
                                     <span className="text-sm flex">
                                       <p className=" font-bold">Sweetness:</p>
-                                      <span className={`badge ${item.sweetness === "LESS" ? "badge-success" : item.sweetness === "NORMAL" ? "badge-warning" : "badge-error"}`}>
+                                      <span
+                                        className={`badge ${item.sweetness === "LESS" ? "badge-success" : item.sweetness === "NORMAL" ? "badge-warning" : "badge-error"}`}
+                                      >
                                         {item.sweetness}
                                       </span>
                                     </span>
