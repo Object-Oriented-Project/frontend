@@ -66,7 +66,7 @@ export default function Cart() {
 
   return (
     <div>
-      <div className="py-10 relative">
+      <div className="py-10 px-10 relative">
         <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg " onClick={() => router.push("/menu")}>
           Go back
         </button>

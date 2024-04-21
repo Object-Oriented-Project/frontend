@@ -33,14 +33,11 @@ export default function Qr() {
     router.push("/summary");
   };
   return (
-    <div className=" min-h-screen bg-gradient-to-b from-[#ffeaea] to-[#ffcccc] from-20% py-6 ">
-      <Image
-        className="grid justify-self-center mx-auto h-auto w-auto"
+    <div className=" min-h-screen bg-gradient-to-b from-[#ffeaea] to-[#ffcccc] from-30% py-6 ">
+      <img
+        className="grid justify-self-center mx-auto w-auto h-auto w-42  md:w-52 md:h-32 lg:w-64 lg:h-42"
         src="/asset/logo-moving.gif"
         alt="logo"
-        width={200}
-        height={150}
-        // className="rounded-lg"
       />
 
       <div className="rounded-3xl border-2 bg-white border-gray-200 p-4  px-10 lg:p-8 mx-80  max-lg:max-w-lg max-lg:mx-auto gap-y-4">
