@@ -34,7 +34,7 @@ export default function Home() {
         {/* Hero content */}
         <div className="absolute inset-0 flex flex-col z-10">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="pt-36 pb-16 md:pt-16 md:pb-16  lg:pt-52">
+            <div className="pt-12 md:pt-24 md:pb-16 lg:pt-28">
               <div className="text-center pb-6 md:pb-6">
                 <h1 className="text-5xl md:text-6xl  font-extrabold leading-tighter tracking-tighter mb-4">
                   Discover Your Favorites{" "}
@@ -51,7 +51,7 @@ export default function Home() {
                     onChange={handleInputChange}
                   />
                   <button
-                    className="flex justify-center rounded-xl bg-pink-100 pt-3 sm:w-20 lg:w-40 ms-10 transition  hover:shadow-xl  transform duration-700 hover:scale-105 hover:bg-black hover:text-white "
+                    className="flex justify-center rounded-xl bg-pink-100 px-6 py-3 sm:w-20 lg:w-40 ms-4 transition  hover:shadow-xl  transform duration-700 hover:scale-105 hover:bg-black hover:text-white "
                     onClick={handleButtonClick}
                     disabled={name.trim() === ""}
                   >
