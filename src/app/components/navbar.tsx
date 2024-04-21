@@ -15,7 +15,7 @@ const Navbar = ()=> {
   return (
     <nav>
       <div className="static top-0">
-        <div className="navbar bg-pink-200">
+        <div className="navbar bg-[#ffb0b0]">
           <div className="flex-1">
             <Image
               src="/asset/logo.webp"
@@ -24,7 +24,7 @@ const Navbar = ()=> {
               height={70}
               // className="rounded-lg"
             />
-            <div className="btn btn-ghost text-xl" onClick={()=> router.push('/')}>CAFKA</div>
+            <div className="btn btn-ghost font- text-xl" onClick={()=> router.push('/')}>CAFKA</div>
           </div>
 
           <div className="flex-none">
@@ -61,12 +61,10 @@ const Navbar = ()=> {
                   <span className="font-bold text-lg">{ord.getSize()} items</span>
                   <span className="text-info">Subtotal: {ord.computeTotalPrice()} Baht</span>
                   <div className="card-actions">
-                    <button className="btn btn-primary btn-block" onClick={ () => router.push("/cart")}>
+                    <button className="btn bg-[#c62d70] text-white btn-block" onClick={ () => router.push("/cart")}>
                       View a Cart
                     </button>
-                    <button className="btn btn-secondary btn-block" onClick={ () => ord.addProduct(new Food(10,"A",159,"LARGE",1,"NORMAL"))}>
-                      HIHI\
-                    </button>
+                  
                   </div>
                 </div>
               </div>

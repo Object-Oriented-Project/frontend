@@ -61,14 +61,14 @@ const Modal = ({ item, closeModal }) => {
         <p className="text-gray-500 poppins text-sm ">{item.ItemDescription}</p>
 
         {item.ItemType === "Beverage" && (
-          <div>
+          <div className="">
             <div className="form-control mb-4">
               <label className="label cursor-pointer">
                 <span className="label-text font-md">Select Size:</span>
                 <select
                   value={selectedSize}
                   onChange={(e) => handleSizeChange(e.target.value)}
-                  className="select select-bordered w-full"
+                  className="select select-bordered w-36 md:w-48 lg:w-64 "
                 >
                   <option value="Small">Small</option>
                   <option value="Medium">Medium</option>
@@ -84,7 +84,7 @@ const Modal = ({ item, closeModal }) => {
                   <select
                     value={sweetLevel}
                     onChange={(e) => handleSweetLevelChange(e.target.value)}
-                    className="select select-bordered w-full border border-gray-300 rounded-lg"
+                    className="select select-bordered w-36 md:w-48 lg:w-64"
                   >
                     <option value="MORE">Extra sweet 150%</option>
                     <option value="NORMAL">Normal 100%</option>
@@ -187,7 +187,7 @@ const Modal = ({ item, closeModal }) => {
 
 
         <div className="modal-action">
-          <label htmlFor={`my_modal_${item.ID}`} className="btn bg-pink-400" onClick={() => {addToCart(item) ; console.log(ord.getProducts()); closeModal()}} >
+          <label htmlFor={`my_modal_${item.ID}`} className="btn bg-[#c62d70] text-white  transition transform duration-900  hover:shadow-xl hover:scale-105 " onClick={() => {addToCart(item) ; console.log(ord.getProducts()); closeModal()}} >
             Add To Cart
           </label>
         </div>

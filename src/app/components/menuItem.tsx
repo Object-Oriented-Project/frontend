@@ -13,12 +13,12 @@ const MenuItem = ({ item, openModal  }) => {
     } else if (item.ItemType === 'Bakery') {
         bgColorClass = 'bg-amber-300';
     } else if (item.ItemType === 'Food') {
-        bgColorClass = 'bg-gray-100';
+        bgColorClass = 'bg-[#ffb0b0]';
     }
     return (
         <div>
             <div key={item.ID} className="bg-white border border-gray-100 transition transform duration-700 hover:shadow-xl hover:scale-105 p-4 rounded-lg relative">
-                <span className={`${bgColorClass} border border-pink-500 rounded-full text-black text-sm poppins px-4 py-1 inline-block mb-4`}>
+                <span className={`${bgColorClass} border border-black  rounded-full text-black text-sm poppins px-4 py-1 inline-block mb-4`}>
                     {item.ItemType}
                 </span>
                 <Image
@@ -36,7 +36,7 @@ const MenuItem = ({ item, openModal  }) => {
 
                     <label
                         htmlFor={`my_modal_${item.ID}`}
-                        className="btn bg-pink-400 text-white px-8 py-2 focus:outline-none poppins rounded-full mt-24 transform transition duration-300 hover:bg-pink-700 hover:scale-105"
+                        className="btn bg-[#c62d70] text-white px-8 py-2 rounded-full mt-24  transition transform duration-900  hover:shadow-xl hover:scale-105"
                         onClick={() => openModal(item)}
                    >
                         Order Now

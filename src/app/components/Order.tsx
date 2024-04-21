@@ -4,12 +4,14 @@ import { Food } from "./Food";
 import { Beverage } from "./Beverage";
 import { Bakery } from "./Bakery";
 import generatePayload from "promptpay-qr";
+import { ReactNode } from "react";
 
 export default class Order {
   #uid: string;
   #oid: string;
   #products: any[]
   #totalPrice: number;
+  tableNO: ReactNode;
 
   constructor(uid: string) {
     this.#uid = uid;

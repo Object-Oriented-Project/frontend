@@ -40,7 +40,7 @@ export default function SelectTable() {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-b from-[#ffeaea] to-[#ffcccc] from-20% py-6 h-screen ">
+    <div className="min-h-screen bg-gradient-to-b from-[#ffeaea] to-[#ffcccc] from-20% py-6  ">
       <Image
         className="grid justify-self-center mx-auto"
         src="/asset/logo-moving.gif"

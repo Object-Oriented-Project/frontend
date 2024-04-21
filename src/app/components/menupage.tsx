@@ -52,11 +52,11 @@ const Menupage = () => {
       <div className="sm:mx-2 md:mx-4 mt-4">
 
         {/* Menu tabs */}
-        <div className="flex items-center justify-center space-x-12 sm:mx-38 md:mx-74 lg:mx-96 rounded-full bg-slate-100" role="tablist">
-          <a role="tab" className={menuTab === 'Recommended' ? "active_menu_tab poppins bg-rose-300 p-2 rounded-full" : "menu_tab poppins p-2 bg-gray-100 rounded-full"} onClick={() => handleMenuTabs('Recommended')}>Recommended</a>
-          <a role="tab" className={menuTab === 'Beverage' ? "active_menu_tab poppins bg-rose-300 p-2 rounded-full" : "menu_tab poppins  p-2 bg-gray-100 rounded-full"} onClick={() => handleMenuTabs('Beverage')}>Beverage</a>
-          <a role="tab" className={menuTab === 'Bakery' ? "active_menu_tab poppins bg-rose-300 p-2 rounded-full" : "menu_tab poppins  p-2 bg-gray-100 rounded-full"} onClick={() => handleMenuTabs('Bakery')}>Bakery</a>
-          <a role="tab" className={menuTab === 'Food' ? "active_menu_tab poppins bg-rose-300 p-2 rounded-full" : "menu_tab poppins  p-2  bg-gray-100 rounded-full"} onClick={() => handleMenuTabs('Food')}>Food</a>
+        <div className="flex items-center justify-center space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-12 rounded-full bg-slate-100 p-2 " role="tablist">
+          <a role="tab" className={menuTab === 'Recommended' ? "active_menu_tab poppins font-bold bg-[#c62d70] text-white  p-2 rounded-full" : "menu_tab poppins font-bold py-2   bg-slate-100 rounded-full"} onClick={() => handleMenuTabs('Recommended')}>Recommended</a>
+          <a role="tab" className={menuTab === 'Beverage' ? "active_menu_tab poppins font-bold bg-[#c62d70] text-white  p-2 rounded-full" : "menu_tab poppins font-bold  p-2 bg-slate-100 rounded-full"} onClick={() => handleMenuTabs('Beverage')}>Beverage</a>
+          <a role="tab" className={menuTab === 'Bakery' ? "active_menu_tab poppins font-bold bg-[#c62d70] text-white  p-2 rounded-full" : "menu_tab poppins font-bold  p-2 bg-slate-100 rounded-full"} onClick={() => handleMenuTabs('Bakery')}>Bakery</a>
+          <a role="tab" className={menuTab === 'Food' ? "active_menu_tab poppins font-bold bg-[#c62d70] text-white p-2 rounded-full" : "menu_tab poppins font-bold  p-2  bg-slate-100 rounded-full"} onClick={() => handleMenuTabs('Food')}>Food</a>
         </div>
 
         {/* All foods categorized by type*/}

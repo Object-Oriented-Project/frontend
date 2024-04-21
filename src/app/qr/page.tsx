@@ -53,7 +53,11 @@ export default function Qr() {
           </div>
           <button
             className=" inline-block cursor-pointer rounded-md bg-gray-800 px-12 py-3 text-center text-sm font-semibold uppercase text-white transition transform duration-700 hover:shadow-xl hover:scale-105 ease-in-out"
-            onClick={handleSendToKitchen}
+            onClick={() => {
+              handleSendToKitchen();
+              router.push("/summary");
+          }}
+            
           >
             Payment Successful!
           </button>
