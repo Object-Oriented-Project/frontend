@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { ord } from "../page";
-import { Beverage } from "./Beverage";
-import { Bakery } from "./Bakery";
-import { Food } from "./Food";
+import { ord } from "../../page";
+import { Beverage } from "../product/Beverage";
+import { Food } from "../product/Food";
 import Image from "next/image";
+import { Bakery } from "../product/Bakery";
 
 const Modal = ({ item, closeModal }) => {
   const [selectedSize, setSelectedSize] = useState("Large");
@@ -13,14 +13,14 @@ const Modal = ({ item, closeModal }) => {
   const [ketoFlour, setKetoFlour] = useState(false); // State to track checkbox value
   const [spicyLevel, setSpicyLevel] = useState("NORMAL"); // State to track spicy level [0-4
 
-  const handleSizeChange = (size) => {
+  const handleSizeChange = (size : string) => {
     setSelectedSize(size);
   };
 
-  const handleSweetLevelChange = (level) => {
+  const handleSweetLevelChange = (level: string) => {
     setSweetLevel(level);
   };
-  const handleSpicyLevel = (level) => {
+  const handleSpicyLevel = (level: string) => {
     setSpicyLevel(level);
   };
   const handleIncrement = () => {
@@ -34,7 +34,7 @@ const Modal = ({ item, closeModal }) => {
     }
   };
 
-  const addToCart = (item) => {
+  const addToCart = (item : any) => {
     let finalQuantity = quantity;
     if (item.ItemType === "Beverage") {
       ord.addProduct(

@@ -1,9 +1,9 @@
 "use client";
-import Slideshow from "./components/SlideShow";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Order from "./components/order";
 import Customer from "./components/Customer";
-import Order from "./components/Order";
+import Slideshow from "./components/decoration/SlideShow";
 
 export default function Home() {
   const router = useRouter();

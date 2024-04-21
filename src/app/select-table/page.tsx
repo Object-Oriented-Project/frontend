@@ -2,10 +2,6 @@
 import React, { useState } from "react";
 import TableMap from "../components/TableMap";
 import { useRouter } from "next/navigation";
-import Receipt from "../components/Receipt";
-// import {ord} from "../cart/page";
-import { cust } from "../page";
-import Order from "../components/Order";
 export let tableNo: string;
 import Image from "next/image";
 

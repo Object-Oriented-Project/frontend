@@ -20,7 +20,7 @@ export class Beverage extends Product {
     return this.#sweet;
   }
 
-  toString() {
+  getProductDetail() {
     return `size : ${this.getSize()}\nsweet level :  ${this.getSweet()}`;
   }
 }

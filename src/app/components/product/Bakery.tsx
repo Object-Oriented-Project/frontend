@@ -19,7 +19,7 @@ export class Bakery extends Product {
     return this.#keto;
   }
 
-  toString() {
+  getProductDetail() {
     return `size : ${this.getSize()}\nketo :  ${this.isKeto()}`;
   }
 }

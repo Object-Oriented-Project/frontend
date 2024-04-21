@@ -20,7 +20,7 @@ export class Food extends Product {
     return this.#spicy;
   }
 
-  toString() {
+  getProductDetail() {
     return `size : ${this.getSize()}\nspicy level :  ${this.getSpicy()}`;
   }
 }

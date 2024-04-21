@@ -2,7 +2,7 @@
 import React, { use, useContext, useEffect, useState } from "react";
 import QRCode from "qrcode.react";
 import { cust } from "../page";
-import Order from "../components/Order";
+import Order from "../components/order";
 import { useRouter } from "next/navigation";
 const generatePayload = require("promptpay-qr");
 import { ord } from "../page";
@@ -20,7 +20,6 @@ export default function Qr() {
   console.log("ord pay ", ord.pay());
   const [qrCode, setQrCode] = useState(qrPayload);
 
-  // console.log("1 qr",qrCode)
   const handleSendToKitchen = () => {
     receipt = new Receipt(
       ord.getOID(),
@@ -30,7 +29,6 @@ export default function Qr() {
       "ONGOING",
       ord,
     );
-    console.log("OID : ", ord.getOID());
     receipt.sendToKitchen();
     router.push("/summary");
   };
@@ -53,7 +51,6 @@ export default function Qr() {
           <div className="roundContainer justify-center p-10">
             <QRCode value={qrCode} />
           </div>
-          x
           <button
             className=" inline-block cursor-pointer rounded-md bg-gray-800 px-12 py-3 text-center text-sm font-semibold uppercase text-white transition transform duration-700 hover:shadow-xl hover:scale-105 ease-in-out"
             onClick={() => {

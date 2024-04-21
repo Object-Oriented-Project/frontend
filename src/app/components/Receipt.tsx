@@ -1,8 +1,8 @@
-import { cust } from "../page";
 import axios from "axios";
-import Order from "./Order";
-import { Bakery } from "./Bakery";
-import { Beverage } from "./Beverage";
+import Order from "./order";
+import { Bakery } from "./product/Bakery";
+import { Beverage } from "./product/Beverage";
+
 export default class Receipt {
   #oid: string;
   #uid: string;

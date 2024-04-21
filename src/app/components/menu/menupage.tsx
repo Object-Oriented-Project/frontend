@@ -19,7 +19,7 @@ const Menupage = () => {
         const response = await axios.get("http://localhost:3001/api/menu");
         setMenuData(response.data);
         setLoading(false);
-      } catch (error) {
+      } catch (error : any) {
         setLoading(false);
         setError(error);
       }
@@ -29,11 +29,11 @@ const Menupage = () => {
   }, []);
 
   // Food menu tab handler
-  const handleMenuTabs = (type) => {
+  const handleMenuTabs = (type : string) => {
     setMenuTab(type);
   };
 
-  const openModal = (item) => {
+  const openModal = (item : any) => {
     setSelectedItem(item);
     setShowModal(true);
   };
@@ -62,7 +62,7 @@ const Menupage = () => {
             <p>Error fetching menu items: {error.message}</p>
           ) : (
             menuData
-              .filter((item) => {
+              .filter((item : any) => {
                 if (menuTab === "Recommended") {
                   return item.IsRecommended === true;
                 } else {
@@ -70,13 +70,12 @@ const Menupage = () => {
                 }
               })
 
-              .map((item) => (
+              .map((item : any) => (
                 <MenuItem key={item.ID} item={item} openModal={openModal} />
               ))
           )}
         </div>
       </div>
-      {/* Render ItemModal if showModal is true */}
       {showModal && selectedItem && (
         <ItemModal item={selectedItem} closeModal={closeModal} />
       )}

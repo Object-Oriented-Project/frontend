@@ -1,13 +1,7 @@
 "use client";
-import Link from "next/link";
 import Image from "next/image";
-import Logo from "../../static/cafka.png";
 import { useRouter } from "next/navigation";
 import { ord } from "../page";
-import Order from "./Order";
-import { useEffect, useState } from "react";
-import { Bakery } from "./Bakery";
-import { Food } from "./Food";
 
 const Navbar = () => {
   const router = useRouter();

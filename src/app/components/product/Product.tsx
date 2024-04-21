@@ -1,4 +1,4 @@
-export class Product {
+export abstract class Product {
   #pid: number;
   #name: string;
   #price: number;
@@ -36,16 +36,12 @@ export class Product {
   getName() {
     return this.#name;
   }
-  increaseQuantity() {
-    this.#quantity++;
-  }
-  decreseQuantity() {
-    this.#quantity--;
-  }
+ 
   setQuantity(newQuantity: number) {
     this.#quantity = newQuantity;
   }
   getTotalPrice() {
     return this.#price * this.#quantity;
   }
+  abstract getProductDetail(): string;
 }

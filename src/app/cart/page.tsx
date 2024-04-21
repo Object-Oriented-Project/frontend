@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Food } from "../components/Food";
-import Order from "../components/Order";
+import Order from "../components/order";
 import { Product } from "../components/Product";
 import { Beverage } from "../components/Beverage";
-import { Bakery } from "../components/Bakery";
+import { Bakery } from "../components/product/Bakery";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -129,7 +129,7 @@ export default function Cart() {
                     <div>
                       <p>
                         {item.product
-                          .toString()
+                          .getProductDetail()
                           .split("\n")
                           .map((line, index) => (
                             <React.Fragment key={index}>

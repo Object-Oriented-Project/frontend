@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { Beverage } from "./Beverage";
-import { ord } from "../menu/page";
+import { Beverage } from "../product/Beverage";
 
 const MenuItem = ({ item, openModal }) => {
   let bgColorClass = "";

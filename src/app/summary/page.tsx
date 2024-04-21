@@ -1,23 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
-import Order from '../components/Order';
-import Receipt from '../components/Receipt';
-import Customer from '../components/Customer';
-import axios from 'axios';
-
+import { receipt } from '../qr/page';
 export default function Summary() {
     const router = useRouter();
-    const [order, setOrder] = useState(new Order('uid'));
-    const [receipt, setReceipt] = useState<Receipt | null>(null);
-    const [customer, setCustomer] = useState(new Customer('Customer Name'));
-
-    useEffect(() => {
-        const newReceipt = new Receipt(order.getOID(), customer.getUid(), 'tableNo', customer.getName(), 'status', order);
-        setReceipt(newReceipt);
-    }, [order, customer]);
-
-    console.log(receipt?.getReceiptData().order_items)
 
     return (
         <div className="flex flex-col h-screen w-full items-center justify-center bg-gray-600">
