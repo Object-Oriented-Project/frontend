@@ -1,6 +1,6 @@
 "use client";
 import Navbar from "../components/navbar";
-import Banner from "../components/banner";
+import Banner from "../components/decoration/banner";
 import Menupage from "../components/menu/menupage";
 import Order from "../components/order";
 import { ord } from "../page";

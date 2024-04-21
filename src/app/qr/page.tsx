@@ -61,6 +61,16 @@ export default function Qr() {
           >
             Payment Successful!
           </button>
+
+          <button
+            className="btn bg-gray-200 mt-4 px-12 py-3 hover:bg-black hover:text-white transition transform duration-900  hover:shadow-xl hover:scale-105 "
+            onClick={() => {
+              router.push("/select-table");
+            }}
+          >
+            {" "}
+            Back for More?{" "}
+          </button>
         </div>
       </div>
     </div>
