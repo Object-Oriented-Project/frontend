@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 
-const images = ["/asset/promo1.svg", "/asset/promo2.svg", "/asset/promo3.svg"];
+const images = ["/asset/promo1.webp", "/asset/promo2.webp", "/asset/promo3.webp"];
 
 const imagesx = [
-  "/asset/promo1x.svg",
-  "/asset/promo2x.svg",
-  "/asset/promo3x.svg",
+  "/asset/promo1x.webp",
+  "/asset/promo2x.webp",
+  "/asset/promo3x.webp",
 ];
 
 export default function Slideshow() {
