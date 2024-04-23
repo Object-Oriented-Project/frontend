@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import TableMap from "../components/TableMap";
 import { useRouter } from "next/navigation";
 export let tableNo: string;
-import Image from "next/image";
 
 export default function SelectTable() {
   const [selectedOption, setSelectedOption] = useState(null);

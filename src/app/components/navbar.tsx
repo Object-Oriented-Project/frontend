@@ -18,7 +18,6 @@ const Navbar = () => {
                 width={50}
                 height={50}
                 className=" w-auto h-auto"
-                // className="rounded-lg"
               />
               <div className="text-xl">CAFKA</div>
             </div>

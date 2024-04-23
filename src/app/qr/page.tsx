@@ -1,21 +1,17 @@
 "use client";
-import React, { use, useContext, useEffect, useState } from "react";
+import React, {useState } from "react";
 import QRCode from "qrcode.react";
 import { cust } from "../page";
-import Order from "../components/order";
 import { useRouter } from "next/navigation";
-const generatePayload = require("promptpay-qr");
 import { ord } from "../page";
 import { tableNo } from "../select-table/page";
-import Image from "next/image";
 import Receipt from "../components/Receipt";
 
 export let receipt: Receipt;
+
 export default function Qr() {
-  // const [mobileNum, setMobileNum] = '000-000-0000'
-  // const [IDCard, setIDCard] = '0-0000-00000-00-0'
+
   const router = useRouter();
-  // console.log(ord.computeTotalPrice())
   const qrPayload = ord.pay();
   console.log("ord pay ", ord.pay());
   const [qrCode, setQrCode] = useState(qrPayload);

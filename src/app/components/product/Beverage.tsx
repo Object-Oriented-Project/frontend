@@ -1,4 +1,3 @@
-// Beverage class
 import { Product } from "./Product";
 
 export class Beverage extends Product {

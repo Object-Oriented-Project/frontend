@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Beverage } from "../product/Beverage";
 
 const MenuItem = ({ item, openModal }) => {
+  
   let bgColorClass = "";
 
   if (item.ItemType === "Beverage") {

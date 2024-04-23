@@ -8,7 +8,6 @@ export default class Receipt {
   #uid: string;
   #tableNo: string;
   #custName: string;
-  // totalPrice : number;
   #status: string;
   #order: Order;
 
@@ -22,10 +21,9 @@ export default class Receipt {
   ) {
     this.#oid = oid;
     this.#uid = uid;
-    this.#tableNo = tableNo; // ได้จากตอนเลือกโต๊ะ
-    this.#custName = custName; // เอาจาก Obj cust ?
-    // this.totalPrice = totalPrice;
-    this.#status = status; // สถานะการทำอาหาร
+    this.#tableNo = tableNo; 
+    this.#custName = custName; 
+    this.#status = status; 
     this.#order = order;
   }
 
@@ -51,7 +49,6 @@ export default class Receipt {
         return itemData;
     });
 
-    
     return {
       customer_id: parseInt(this.#uid),
       customer_name: this.#custName,
@@ -64,8 +61,6 @@ export default class Receipt {
 }
 
   sendToKitchen() {
-    console.log(this.#order.getProducts());
-
     const orderItems = this.#order.getProducts().map((item) => {
       let itemData = {
         menu_id: item.product.getId(),
@@ -82,20 +77,9 @@ export default class Receipt {
         // Food
         itemData.spicy_level = item.product.getSpicy();
       }
-
       return itemData;
     });
-    const data = {
-      from: "kitchen",
-      to: "kitchen",
-      customer_id: parseInt(this.#uid),
-      customer_name: this.#custName,
-      order_id: parseInt(this.#oid),
-      order_table: this.#tableNo,
-      order_status: this.#status,
-      order_items: orderItems,
-    };
-    console.log(data);
+
     axios
       .post("http://localhost:3001/api/kitchen/", {
         from: "kitchen",

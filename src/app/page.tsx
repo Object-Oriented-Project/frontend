@@ -1,9 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Order from "./components/order";
+import Order from "./components/Order";
 import Customer from "./components/Customer";
-import Slideshow from "./components/decoration/SlideShow";
+import Slideshow from "./components/decoration/slideShow";
 
 export default function Home() {
   const router = useRouter();
@@ -17,9 +17,7 @@ export default function Home() {
     if (name.trim() !== "") {
       cust = new Customer(name);
       ord = new Order(cust.getUid());
-      setTimeout(() => {
-        router.push("/menu");
-      }, 1000); // 10 seconds delay (10000 milliseconds)
+      router.push("/menu");
     }
   };
 
@@ -27,11 +25,8 @@ export default function Home() {
     <div>
       <section className="relative min-h-screen">
         <section className="relative">
-          {/* <div className="absolute left-1/2 transform -translate-x-1/2" > */}
           <Slideshow />
-          {/* </div> */}
         </section>
-        {/* Hero content */}
         <div className="absolute inset-0 flex flex-col z-10">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="pt-12 md:pt-24 md:pb-16 lg:pt-28">

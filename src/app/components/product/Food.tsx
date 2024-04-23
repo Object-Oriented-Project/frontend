@@ -1,4 +1,3 @@
-// Food class
 import { Product } from "./Product";
 
 export class Food extends Product {

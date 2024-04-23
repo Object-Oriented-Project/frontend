@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Banner = () => {
+  
   const banners = ["banner-1", "banner-2", "banner-3", "banner-4", "banner-5"];
 
   return (

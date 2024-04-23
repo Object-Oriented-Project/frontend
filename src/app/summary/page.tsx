@@ -1,7 +1,8 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from "next/navigation";
 import { receipt } from '../qr/page';
+
 export default function Summary() {
     const router = useRouter();
 
@@ -25,7 +26,6 @@ export default function Summary() {
 
                 <div className="divider  divider-neutral mt-0 mb-2 "></div>
 
-                {/* Display order products */}
                 <div className="flex flex-col gap-3 ">
                     <table className="w-full text-left">
                         <thead>
@@ -52,11 +52,6 @@ export default function Summary() {
                     <p className="flex justify-end mr-2">Total: {receipt.getReceiptData().order_total}</p>
                     )}
                 </div>
-
-
-
-
-                {/* Contact information */}
 
                 <div className="pb-4 justify-center items-center flex flex-col ">
                     <div className="divider  divider-neutral mb-0 "></div>

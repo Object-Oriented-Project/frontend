@@ -10,20 +10,18 @@ const imagesx = [
 ];
 
 export default function Slideshow() {
+  
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentImages, setCurrentImages] = useState(images); // Initialize with images array
+  const [currentImages, setCurrentImages] = useState(images); 
   const bgContainerRef = useRef();
 
-  // Function to change the background image
   function changeBackgroundImage() {
     if (bgContainerRef.current) {
       bgContainerRef.current.style.backgroundImage = `url(${currentImages[currentIndex]})`;
     }
-    // Update the index and wrap around if necessary
     setCurrentIndex((prevIndex) => (prevIndex + 1) % currentImages.length);
   }
 
-  // Set an interval to change the background image every 5 seconds
   useEffect(() => {
     const intervalId = setInterval(changeBackgroundImage, 5000);
 
@@ -40,25 +38,18 @@ export default function Slideshow() {
     }
   }, [currentIndex, currentImages]);
 
-  // Handle screen size changes
   function handleScreenSizeChange(e) {
     if (e.matches) {
-      // If the screen is large, use imagesx
       setCurrentImages(imagesx);
     } else {
-      // Otherwise, use images
       setCurrentImages(images);
     }
   }
 
   useEffect(() => {
-    // Create a media query for large screens
+
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
-
-    // Add event listener for changes in screen size
     mediaQuery.addEventListener("change", handleScreenSizeChange);
-
-    // Initial check
     handleScreenSizeChange(mediaQuery);
 
     // Cleanup event listener on component unmount
@@ -72,7 +63,6 @@ export default function Slideshow() {
       ref={bgContainerRef}
       className="h-screen w-screen bg-cover bg-center bg-no-repeat"
     >
-      {/* Your content here */}
     </div>
   );
 }

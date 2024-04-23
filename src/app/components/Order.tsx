@@ -7,7 +7,7 @@ import generatePayload from "promptpay-qr";
 export default class Order {
   #uid: string;
   #oid: string;
-  #products: any[];
+  #products: Product[];
   #totalPrice: number;
 
   constructor(uid: string) {
@@ -25,21 +25,18 @@ export default class Order {
 
   removeProduct(product: Product) {
     this.#products = this.#products.filter(
-      (p) => !this.productsAreEqual(p, product),
+      (p) => !this.#productsAreEqual(p, product),
     );
   }
-  productsAreEqual(product1: Product, product2: Product) {
-    // Check if the products have the same ID, name, and size
+  #productsAreEqual(product1: Product, product2: Product) {
     if (
       product1.getId() === product2.getId() &&
       product1.getName() === product2.getName() &&
       product1.getSize() === product2.getSize()
     ) {
-      // If both products are Bakery, check for the keto attribute
       if (product1 instanceof Bakery && product2 instanceof Bakery) {
         return product1.isKeto() === product2.isKeto();
       }
-      // If both products are Beverage, check for the sweetness attribute
       if (product1 instanceof Beverage && product2 instanceof Beverage) {
         return product1.getSweet() === product2.getSweet();
       }
@@ -47,15 +44,13 @@ export default class Order {
       if (product1 instanceof Food && product2 instanceof Food) {
         return product1.getSpicy() === product2.getSpicy();
       }
-      // For other types of products, no additional attributes need to be checked
       return true;
     }
-    // If any of the basic attributes differ, return false
     return false;
   }
   updateProduct(product: Product, newQuantity: number) {
     const index = this.#products.findIndex((p) =>
-      this.productsAreEqual(p, product),
+      this.#productsAreEqual(p, product),
     );
     if (index !== -1) {
       this.#products[index].setQuantity(newQuantity);
@@ -97,16 +92,11 @@ export default class Order {
     return this.#products.length;
   }
   pay() {
-    if (this.#totalPrice == 0) {
-      // If the total price is 0, do not send the order
-      //show error
-    } else {
       const qrPayload = generatePayload("1-1008-01474-58-0", {
         amount: this.#totalPrice,
       });
-      // Set the QR code payload as state or return it for display
       return qrPayload;
-    }
+    
   }
   getUID() {
     return this.#uid;

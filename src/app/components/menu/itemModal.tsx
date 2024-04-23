@@ -7,11 +7,12 @@ import Image from "next/image";
 import { Bakery } from "../product/Bakery";
 
 const Modal = ({ item, closeModal }) => {
+  
   const [selectedSize, setSelectedSize] = useState("Large");
   const [sweetLevel, setSweetLevel] = useState("NORMAL");
   const [quantity, setQuantity] = useState(1);
-  const [ketoFlour, setKetoFlour] = useState(false); // State to track checkbox value
-  const [spicyLevel, setSpicyLevel] = useState("NORMAL"); // State to track spicy level [0-4
+  const [ketoFlour, setKetoFlour] = useState(false); 
+  const [spicyLevel, setSpicyLevel] = useState("NORMAL"); 
 
   const handleSizeChange = (size : string) => {
     setSelectedSize(size);

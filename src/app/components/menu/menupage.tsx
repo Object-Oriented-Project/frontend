@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MenuItem from "./menuItem";
-import ItemModal from "./ItemModal";
+import ItemModal from "./itemModal";
 
 const Menupage = () => {
+  
   const [menuTab, setMenuTab] = useState("Recommended");
   const [loading, setLoading] = useState(false);
   const [menuData, setMenuData] = useState([]);
